@@ -1,3 +1,115 @@
-Title: "Movie-Api"
+Documentation for Movie API
 
-This app can be used for .......
+<!-- 
+Request: 
+
+URL:
+HTTP Method:
+Request data format:
+Response data format:
+-->
+
+**Get a list of movies:
+
+/movies
+GET
+None
+Json object with data about all movies in API
+
+
+
+**Return data about a single movie by title to user:
+
+/movies/[Title]
+GET
+Insert movie title you want to request in URL [HERE]
+Json object with data about a single movie, containing description, genre, director, and image URL.
+
+
+
+**Return data about a genre by type:
+
+/genre/[Name]
+GET
+Insert movie title you want to request in URL [HERE]
+JSON object with data about a genre by Name
+
+
+
+**Return data about a director by name:
+
+/directors/[Name]
+GET
+Insert directors name in URL [HERE]
+JSON object with data about specific director that was requested
+
+
+
+**Allow new users to register:
+
+/users/register
+POST
+JSON object with data about the new user
+Example:
+
+"userName" : "API1234"
+"firstName" : "Tanner"
+"lastName" : "Free"
+"password" : "12345"
+"email" : "email@emailaddress.com"
+"birthDate" : "DOB here"
+"id" : "ID HERE"
+
+If successful, you will receive a JSON oject with the data of the new user, and new user's ID.
+
+
+
+**Allows users to update their username:
+
+/users/[USER ID]
+PUT
+JSON oject with the data to be updated.
+Example:
+
+{
+    "Username" : "API5544"
+}
+
+JSON oject with the user's data, including the updated username, showing that it has been successful.
+
+
+
+**Allow users to add a movie to their favorites, showing only a text that the movie has been added:
+
+users/[USER ID]/favorites/[MOVIE ID]
+POST
+Insert which user ID you want to add a movie to your favorites. [MOVIE ID] is to be the ID of the movie to be added to favorites.
+A message will be returned indicating the movie has been added successfully to the specific user's favorites list.
+
+
+
+**Allow user to remove a movie from their favorites:
+
+/users/[USER ID]/favorites/[MOVIE ID]
+DELETE
+Insert which user ID you want to remove a movie from your favorites. [MOVIE ID] is to be the ID of the movie to be removed.
+A message confirming success or failure will be sent.
+
+
+
+**Allow existing users to deregister:
+
+/users/[USER ID]/deregister
+DELETE
+Insert which user ID in [USER ID], that you wish to deregister. 
+A message confirming success or failure will be sent. 
+
+
+
+
+
+
+
+
+
+
