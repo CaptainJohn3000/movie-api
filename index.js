@@ -1,11 +1,8 @@
 // Import Express (which sets up a web server)
-const express = require('express');
-
- morgan = require('morgan');
- uuid = require('uuid');
-
+const express = require('express'),
+morgan = require('morgan');
+ 
 const app = express();
-
 
 //array of objects of my top ten movies
 let topMovies = [
@@ -30,9 +27,9 @@ let topMovies = [
         genre: 'Action/Adventure',
       },
       {
-          title: 'Saving Private Ryan', 
-          director: 'Steven Spielberg',
-          genre: 'Action/Adventure, War',
+        title: 'Saving Private Ryan', 
+        director: 'Steven Spielberg',
+        genre: 'Action/Adventure, War',
       },
       {
         title: 'The Replacements', 
@@ -62,20 +59,11 @@ let topMovies = [
       
   ];
 
-  let users = [
-    {
-      userName: 'tfree3',
-      firstName: 'Tanner',
-      lastName: 'Free',
-      password: 'password',
-      email: 'hell@email.com',
-      birthDate: '03-04-1992',
-      id: '1'
-    },
-  ];
+  app.use(morgan('common'));
 
 // **Documentation static files are in /public/docs
-  server.use("/docs", express.static("public/docs"));
+  app.use(express.static("public"));
+
 
 // **Getting home page with "Welcome!"
 app.get('/', (req, res) => {
@@ -92,105 +80,62 @@ app.get('/movies', (req, res) => {
 
 
 // **Return data about a single movie by title to user:
-app.get('/movies/:title', (req, res) => {
-  res.json(topMovies.find((movie) => topMovies.title === req.params.title));
+app.get("/movies/:title", (req, res) => {
+res.json(topMovies.find((movie) => movie.title === req.params.title));
 });
 
 
 // **Return data about a genre by type:
 app.get('/genre/:type', (req, res) => {
-  const returnedGenre = topMovies.find(req.genre);
-  res.json(returnedGenre);
+  res.json(topMovies.find((movie) => movie.genre === req.params.genre));
 });
 
 
 // **Return data about a director by name:
 app.get('/directors/:director', (req, res) => {
-  const returnedDirector = topMovies.find(req.director);
-  res.json(returnedDirector);
+  res.send('Successful GET request returning data about specific Director')
 });
 
 // **User Registration:
 app.post('/users', (req, res) => {
-  const newUser = req.body;
-
-  if (!newUser.name) {
-    const message = 'Please include your name!';
-    res.status(400).send(message);
-  } else {
-    newStudent.id = uuid.v4();
-    users.push(newUser);
-    res.status(201).send(newUser);
-  }
+//  create function for user registration
+res.send('After complete send user information to notify completion')
 });
 
 // **Deregister user:
 app.delete('/users/:id', (req, res) => {
-  const = deregisterUser = users.find((user) => user.id === req.params.id);
-  // ******ADD DEREGISTER FUNCTION******
-  if (deregisterUser) {
-    res.status(201).send('Success, goodbye!');
-  } else {
-    res.status(400).send('Please use correct user id!');
-  }
-};
+  // create function to deregister user
+ res.send('Create notification that user has been deregistered')
+});
 
 // **Change User First Name information:
 app.put('/users/:id', (req, res) => {
-  const = changeUser = users.find((user) => user.id === req.params.id);
-  if (changeUser && req.body.firstName) {
-    changeUser.firstName = req.body.firstName;
-    res.status(201).send('Success!');
-    else {
-      res.status(400).send('Failure - please see documentation!');
-    }
-  }
+  // Create function to change user first name
+  res.send('Success notification returned to mark complete');
 });
 
 // **Change User's User Name:
 app.put('/users/:id', (req, res) => {
-  const = changeUser = users.find((user) => user.id === req.params.id);
-  if (changeUser && req.body.userName) {
-    changeUser.userName = req.body.userName;
-    res.status(201).send('Success!');
-  } else {
-      res.status(400).send('Failure - please see documentation!');
-    };
+  // Create function to change user's username
+  res.send('Create notification showing new username has been created/changed')
 });
 
 // **Add Movie to favorites:
 app.post('/users/:id/favorites/:movieTitle', (req, res) => {
-  const validMovie = topMovies.find((movie) => movie.title === req.params.movieTitle);
-// ******ADD FUNCTION HERE******
-  if (validMovie) {
-    res.status(201).send('Success!');
-  } else {
-    res.status(400).send('Please use correct movie title!');
-  }
+//  Create function to add movie to favorites
+res.send('Adding ____ Movie to favorites complete!')
 });
 
 // **Remove movie from favorites:
 app.delete('/users/:id/favorites:movieTitle',(req, res) => {
-  const validMovie = topMovies.find((movie) => movie.title === req.params.movieTitle);
-  // ******ADD FUNCTION HERE******
-if (validMovie) {
-  res.status(201).send('Success!');
-} else {
-  res.status(400).send('Please use correct movie title!');
-}
+  // Create function to delete movie from favorites
+  res.send('movie successfully removed from favorites!')
 });
 
-
-
-
-
-
-
-  app.use((err, req, res, next) => {
-    console.error(err.stack);
-    }
-    res.status(500).send('Something is not working properly, please check!');
-  });
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something is not working properly!');
+});
 
   app.listen(8080, () => {
     console.log('Your app is listening on port 8080.');
@@ -199,7 +144,7 @@ if (validMovie) {
 
 
 
-// req = googleServer.johnnysServer.com:8080/movies
+
 
 
 
