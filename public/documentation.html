@@ -1,53 +1,70 @@
-Documentation for Movie API
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Johnny's Movie-Flix Documentation</title>
 
-<!-- 
-Request: 
+      <!--CSS Normalization below-->
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="css/normalize.css-master/normalize.css"
+  />
+  </head>
+   <body> 
+      <main>
+          <h1>Hello!</h1>
+<p>
+    Below you will find my documentation for my Movie-flix API. 
+</p>
+<h2>Layout</h2>
+<p>
+    Request: 
 
-URL:
-HTTP Method:
-Request data format:
-Response data format:
--->
-
-**Get a list of movies:
-
-/movies
-GET
-None
-Json object with data about all movies in API
-
-
-
-**Return data about a single movie by title to user:
-
-/movies/[Title]
-GET
-Insert movie title you want to request in URL [HERE]
-Json object with data about a single movie, containing description, genre, director, and image URL.
-
-
-
-**Return data about a genre by type:
-
-/genre/[Name]
-GET
-Insert movie title you want to request in URL [HERE]
-JSON object with data about a genre by Name
-
-
-
-**Return data about a director by name:
-
-/directors/[Name]
-GET
-Insert directors name in URL [HERE]
-JSON object with data about specific director that was requested
-
-
-
-**Allow new users to register:
-
-/users/register
+    URL:
+    HTTP Method:
+    Request data format:
+    Response data format:
+</p>
+<h3>Getting Home Page with Welcome:</h3>
+<p>
+    /
+    GET
+    None
+    Will receive "Welcome!"
+</p>
+<h3>Get a list of movies:</h3>
+<p>
+    /movies
+    GET
+    None
+    Json object with data about all movies in API
+</P>
+<h3>Return data about a single movie by title to user:</h3>
+<p>
+    /movies/:title
+    GET
+    Insert movie title you want to request in URL [HERE]
+    Json object with data about a single movie, containing description, genre, director, and image URL.
+</p>
+<h3>Return data about a genre by type:</h3>
+<p>
+    /genre/:type
+    GET
+    Insert movie title you want to request in URL [HERE]
+    JSON object with data about a genre by Name
+</p>
+<h3>Return data about a director by name:</h3>
+<p>
+    /directors/:director
+    GET
+    Insert directors name in URL [HERE]
+    JSON object with data about specific director that was requested
+</p>
+<h3>Allow new users to register:</h3>
+<p>
+    /users/register
 POST
 JSON object with data about the new user
 Example:
@@ -60,54 +77,38 @@ Example:
 "birthDate" : "DOB here"
 "id" : "ID HERE"
 
-If successful, you will receive a JSON oject with the data of the new user, and new user's ID.
+If successful, you will receive a JSON object with the data of the new user, and new user's ID.
+</p>
+<h3>Allows users to update their username:</h3>
+<p>
+    /users/:id
+    PUT
+    JSON oject with the data to be updated.
+    Example:
 
+    {
+        "Username" : "API5544"
+    }
 
-
-**Allows users to update their username:
-
-/users/[USER ID]
-PUT
-JSON oject with the data to be updated.
-Example:
-
-{
-    "Username" : "API5544"
-}
-
-JSON oject with the user's data, including the updated username, showing that it has been successful.
-
-
-
-**Allow users to add a movie to their favorites, showing only a text that the movie has been added:
-
-users/[USER ID]/favorites/[MOVIE ID]
-POST
-Insert which user ID you want to add a movie to your favorites. [MOVIE ID] is to be the ID of the movie to be added to favorites.
-A message will be returned indicating the movie has been added successfully to the specific user's favorites list.
-
-
-
-**Allow user to remove a movie from their favorites:
-
-/users/[USER ID]/favorites/[MOVIE ID]
-DELETE
-Insert which user ID you want to remove a movie from your favorites. [MOVIE ID] is to be the ID of the movie to be removed.
-A message confirming success or failure will be sent.
-
-
-
-**Allow existing users to deregister:
-
-/users/[USER ID]/deregister
-DELETE
-Insert which user ID in [USER ID], that you wish to deregister. 
-A message confirming success or failure will be sent. 
-
-
-
-
-
+    JSON oject with the user's data, including the updated username, showing that it has been successful.
+</p>
+<h3>Allow users to add/remove a movie to their favorites, showing only a text that the movie has been added:</h3>
+<p>
+    users/:id/favorites/:title
+    POST
+    Insert which user ID you want to add a movie to your favorites. [MOVIE ID] is to be the ID of the movie to be added to favorites.
+    A message will be returned indicating the movie has been added successfully to the specific user's favorites list.
+</p>
+<h3>Allow existing users to deregister:</h3>
+<p>
+    /users/:id/deregister
+    DELETE
+    Insert which user ID in [USER ID], that you wish to deregister. 
+    A message confirming success or failure will be sent.  
+</p>
+     </main>
+    </body>
+</html>
 
 
 
